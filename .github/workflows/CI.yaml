@@ -1,0 +1,25 @@
+name: Building and deploying the catalog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v3
+
+    - name: wtf
+      run: ls -la ./catalogs/.*
+
+    - name: Deploy to GitHub pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./catalogs
+        destination_dir: catalogs
+        keep_files: true
